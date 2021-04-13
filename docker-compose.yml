@@ -19,6 +19,19 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
+    ports: 
+          - 3306:3306
     volumes: 
       - ./mysql:/var/lib/mysql/
+  elastic:
+    image: elasticsearch:7.8.1
+    container_name: elastic
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - ./es_data:/usr/share/elasticsearch/data
+    expose:
+      - 9200
+    ports: 
+      - 9200:9200
   
